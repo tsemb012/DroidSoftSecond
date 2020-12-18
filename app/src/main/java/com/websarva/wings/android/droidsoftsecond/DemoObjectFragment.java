@@ -26,4 +26,7 @@ public class DemoObjectFragment extends Fragment {
         ((TextView) view.findViewById(R.id.textView2))
                 .setText(Integer.toString(args.getInt(ARG_OBJECT)));
     }
+
+    private void setupViewFragments() {
+    }
 }
