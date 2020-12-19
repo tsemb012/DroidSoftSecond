@@ -7,22 +7,22 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.websarva.wings.android.droidsoftsecond.DrawerMenuFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.DrawerNav.dmf001_DrawerMenuFragment"
         android:label="fragment_drawer_menu"
-        tools:layout="@layout/fragment_drawer_menu" />
+        tools:layout="@layout/dmf001_fragment_drawer_menu" />
     <fragment
         android:id="@+id/group_list_bottomNav"
-        android:name="com.websarva.wings.android.droidsoftsecond.BottomNavFragment_Search"
+        android:name="com.websarva.wings.android.droidsoftsecond.bnf001.bnf001_SearchBtmNavFragment"
         android:label="fragment_bottom_nav"
-        tools:layout="@layout/fragment_bottom_nav" />
+        tools:layout="@layout/bnf001_fragment_btm_nav_Search" />
     <fragment
         android:id="@+id/mf001_Filter_Group"
-        android:name="com.websarva.wings.android.droidsoftsecond.mf001_Filter_Group"
+        android:name="com.websarva.wings.android.droidsoftsecond.ff001_FilterFragment"
         android:label="fragment_mf001__filter__group"
-        tools:layout="@layout/fragment_mf001__filter__group" />
+        tools:layout="@layout/ff001_fragment_pager_recommend" />
     <fragment
         android:id="@+id/recommendedGroupFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.RecommendedGroupFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.bnf001.pf001_RecommendPagerFragment"
         android:label="RecommendedGroupFragment" />
     <fragment
         android:id="@+id/mapGroupFragment"

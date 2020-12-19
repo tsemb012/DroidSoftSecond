@@ -1,4 +1,4 @@
-package com.websarva.wings.android.droidsoftsecond;
+package com.websarva.wings.android.droidsoftsecond.bnf001;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -12,14 +12,14 @@ import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
 import com.google.android.material.tabs.TabLayoutMediator;
-import com.websarva.wings.android.droidsoftsecond.databinding.FragmentBottomNavBinding;
+import com.websarva.wings.android.droidsoftsecond.databinding.Bnf001FragmentBtmNavSearchBinding;
 
 
-public class BottomNavFragment_Search extends Fragment {
+public class bnf001_SearchBtmNavFragment extends Fragment {
     // When requested, this adapter returns a DemoObjectFragment,
     // representing an object in the collection.
-    private FragmentBottomNavBinding mBinding;
-    ViewPagerAdapter viewPagerAdapter;
+    private @NonNull Bnf001FragmentBtmNavSearchBinding mBinding;
+    ad001_ViewPagerAdapter ad001ViewPagerAdapter;
     ViewPager2 viewPager;
 
     @Nullable
@@ -27,7 +27,7 @@ public class BottomNavFragment_Search extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        mBinding = FragmentBottomNavBinding.inflate(inflater, container, false);
+        mBinding = Bnf001FragmentBtmNavSearchBinding.inflate(inflater, container, false);
         return mBinding.getRoot();
     }
 
@@ -35,9 +35,9 @@ public class BottomNavFragment_Search extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
         //-----FragmentStateAdapterのインスタンス化　&　ViewPagerとのリンク
-        viewPagerAdapter = new ViewPagerAdapter(this);
+        ad001ViewPagerAdapter = new ad001_ViewPagerAdapter(this);
         viewPager = mBinding.pager;
-        viewPager.setAdapter(viewPagerAdapter);
+        viewPager.setAdapter(ad001ViewPagerAdapter);
         TabLayout tabLayout = mBinding.tabLayout;
 
         //-----TabLayoutとViewPagerのリンク

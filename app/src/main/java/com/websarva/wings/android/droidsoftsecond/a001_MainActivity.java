@@ -20,11 +20,11 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
-import com.websarva.wings.android.droidsoftsecond.databinding.ActivityMainBinding;
+import com.websarva.wings.android.droidsoftsecond.databinding.A001ActivityMainBinding;
 
-public class MainActivity extends AppCompatActivity {
+public class a001_MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding mBinding;
+    private A001ActivityMainBinding mBinding;
     private FirebaseFirestore mFirestore;
     //private GroupAdapter mAdaptert;//TODO M001 リスト作成時にカスタムアダプタークラスを作成
     //private MainActivityViewModel mViewModel; //TODO M002 サインイン処理＆onStop時のためのViewModelを作成する
@@ -38,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         //-----DataBinding
-        mBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);//OR ActivityMainBinding.inflate(getLayoutInflater());
+        mBinding = DataBindingUtil.setContentView(this, R.layout.a001_activity_main);//OR ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(mBinding.getRoot());
 
         //-----Navigation for AppBar

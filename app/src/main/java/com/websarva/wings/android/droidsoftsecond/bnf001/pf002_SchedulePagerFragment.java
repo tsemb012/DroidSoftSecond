@@ -1,4 +1,4 @@
-package com.websarva.wings.android.droidsoftsecond;
+package com.websarva.wings.android.droidsoftsecond.bnf001;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -7,12 +7,14 @@ import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
 
+import com.websarva.wings.android.droidsoftsecond.R;
+
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link mf001_Filter_Group#newInstance} factory method to
+ * Use the {@link pf002_SchedulePagerFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class mf001_Filter_Group extends Fragment {
+public class pf002_SchedulePagerFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +25,7 @@ public class mf001_Filter_Group extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public mf001_Filter_Group() {
+    public pf002_SchedulePagerFragment() {
         // Required empty public constructor
     }
 
@@ -33,11 +35,11 @@ public class mf001_Filter_Group extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment mf001_Filter_Group.
+     * @return A new instance of fragment FragmentSecond.
      */
     // TODO: Rename and change types and number of parameters
-    public static mf001_Filter_Group newInstance(String param1, String param2) {
-        mf001_Filter_Group fragment = new mf001_Filter_Group();
+    public static pf002_SchedulePagerFragment newInstance(String param1, String param2) {
+        pf002_SchedulePagerFragment fragment = new pf002_SchedulePagerFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,6 +60,6 @@ public class mf001_Filter_Group extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mf001__filter__group, container, false);
+        return inflater.inflate(R.layout.pf002_fragment_pager_schedule, container, false);
     }
 }

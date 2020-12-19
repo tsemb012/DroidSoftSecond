@@ -1,4 +1,4 @@
-package com.websarva.wings.android.droidsoftsecond;
+package com.websarva.wings.android.droidsoftsecond.bnf001;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,14 +10,16 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
-public class DemoObjectFragment extends Fragment {
+import com.websarva.wings.android.droidsoftsecond.R;
+
+public class pf003_MapPagerFragment extends Fragment {
     public static final String ARG_OBJECT = "object";
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_collection_object, container, false);
+        return inflater.inflate(R.layout.pf003_fragment_pager_map, container, false);
     }
 
     @Override

@@ -9,10 +9,10 @@ import androidx.fragment.app.Fragment;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link DrawerMenuFragment#newInstance} factory method to
+ * Use the {@link ff001_FilterFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class DrawerMenuFragment extends Fragment {
+public class ff001_FilterFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -23,7 +23,7 @@ public class DrawerMenuFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public DrawerMenuFragment() {
+    public ff001_FilterFragment() {
         // Required empty public constructor
     }
 
@@ -33,11 +33,11 @@ public class DrawerMenuFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment DrawerMenuFragment.
+     * @return A new instance of fragment mf001_Filter_Group.
      */
     // TODO: Rename and change types and number of parameters
-    public static DrawerMenuFragment newInstance(String param1, String param2) {
-        DrawerMenuFragment fragment = new DrawerMenuFragment();
+    public static ff001_FilterFragment newInstance(String param1, String param2) {
+        ff001_FilterFragment fragment = new ff001_FilterFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -58,6 +58,6 @@ public class DrawerMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_drawer_menu, container, false);
+        return inflater.inflate(R.layout.ff001_fragment_pager_recommend, container, false);
     }
 }

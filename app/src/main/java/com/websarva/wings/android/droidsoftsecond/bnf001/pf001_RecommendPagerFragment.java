@@ -1,4 +1,4 @@
-package com.websarva.wings.android.droidsoftsecond;
+package com.websarva.wings.android.droidsoftsecond.bnf001;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -8,24 +8,23 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProvider;
 
-import com.websarva.wings.android.droidsoftsecond.databinding.RecommendedGroupFragmentBinding;
+import com.websarva.wings.android.droidsoftsecond.databinding.Pf001FragmentPagerRecommendBinding;
 
-public class RecommendedGroupFragment extends Fragment {
+public class pf001_RecommendPagerFragment extends Fragment {
     public static final String ARG_OBJECT = "object";
-    private RecommendedGroupViewModel mViewModel;
-    private RecommendedGroupFragmentBinding mBinding;
+    private pvm001_RecommendPagerViewModel mViewModel;
+    private Pf001FragmentPagerRecommendBinding mBinding;
 
-    public static RecommendedGroupFragment newInstance() {
-        return new RecommendedGroupFragment();
+    public static pf001_RecommendPagerFragment newInstance() {
+        return new pf001_RecommendPagerFragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
 
-        mBinding = RecommendedGroupFragmentBinding.inflate(inflater, container, false);
+        mBinding = Pf001FragmentPagerRecommendBinding.inflate(inflater, container, false);
         return mBinding.getRoot();
     }
 
@@ -39,7 +38,7 @@ public class RecommendedGroupFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(this).get(RecommendedGroupViewModel.class);
+        //mViewModel = new ViewModelProvider(this).get(pvm001_RecommendPagerViewModel.class);
         // TODO: Use the ViewModel
     }
 }
