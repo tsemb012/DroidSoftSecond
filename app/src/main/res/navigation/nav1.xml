@@ -3,35 +3,32 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav1"
-    app:startDestination="@id/group_list_bottomNav">
+    app:startDestination="@id/bnf001_Search">
 
     <fragment
-        android:id="@+id/nav_home"
+        android:id="@+id/dmf001_top"
         android:name="com.websarva.wings.android.droidsoftsecond.DrawerNav.dmf001_DrawerMenuFragment"
         android:label="fragment_drawer_menu"
         tools:layout="@layout/dmf001_fragment_drawer_menu" />
     <fragment
-        android:id="@+id/group_list_bottomNav"
+        android:id="@+id/bnf001_Search"
         android:name="com.websarva.wings.android.droidsoftsecond.bnf001.bnf001_SearchBtmNavFragment"
         android:label="fragment_bottom_nav"
-        tools:layout="@layout/bnf001_fragment_btm_nav_Search" />
+        tools:layout="@layout/bnf001_fragment_btm_nav_search" >
+        <action
+            android:id="@+id/action_bnf001_Search_to_f002_AddGroupFragment2"
+            app:destination="@id/f002_AddGroupFragment2" />
+    </fragment>
     <fragment
-        android:id="@+id/mf001_Filter_Group"
-        android:name="com.websarva.wings.android.droidsoftsecond.ff001_FilterFragment"
+        android:id="@+id/f001_Filter"
+        android:name="com.websarva.wings.android.droidsoftsecond.f001_FilterFragment"
         android:label="fragment_mf001__filter__group"
-        tools:layout="@layout/ff001_fragment_pager_recommend" />
+        tools:layout="@layout/f001_fragment_pager_recommend" />
     <fragment
-        android:id="@+id/recommendedGroupFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.bnf001.pf001_RecommendPagerFragment"
-        android:label="RecommendedGroupFragment" />
-    <fragment
-        android:id="@+id/mapGroupFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.MapGroupFragment"
-        android:label="fragment_map_group_list_dialog"
-        tools:layout="@layout/fragment_map_group_list_dialog" />
-    <fragment
-        android:id="@+id/scheduleGroupFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.ScheduleGroupFragment"
-        android:label="schedule_group_fragment"
-        tools:layout="@layout/schedule_group_fragment" />
+        android:id="@+id/f002_AddGroupFragment2"
+        android:name="com.websarva.wings.android.droidsoftsecond.f002_AddGroupFragment"
+        android:label="fragment_f002__add_group"
+        tools:layout="@layout/f002_fragment_group_add" />
+
+
 </navigation>

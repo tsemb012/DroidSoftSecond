@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.tabs.TabLayout;
@@ -26,8 +28,23 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-
         mBinding = Bnf001FragmentBtmNavSearchBinding.inflate(inflater, container, false);
+
+
+        //-----NavHostFragmentを用いた画面遷移
+        mBinding.floatingActionButton.setOnClickListener(
+                new View.OnClickListener(){
+                    @Override
+                    public void onClick(View v) {
+                        NavDirections action =
+                                bnf001_SearchBtmNavFragmentDirections.actionBnf001SearchToF002AddGroupFragment2();
+                        //アクションにArgumentを引き渡す。
+                        //action.setNum((new Random()).nextInt());
+                        Navigation.findNavController(v).navigate(action);
+                    }
+                }
+        );
+
         return mBinding.getRoot();
     }
 

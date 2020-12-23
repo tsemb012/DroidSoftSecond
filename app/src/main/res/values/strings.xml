@@ -14,4 +14,35 @@
     <string name="tab_1st">オススメ</string>
     <string name="tab_2nd">スケジュール</string>
     <string name="tab_3rd">マップ</string>
+
+    <string name="group_name">グループ名</string>
+    <string name="group_introduction">グループ紹介</string>
+    <string name="group_detail">詳細情報</string>
+    <string name="group_type">グループタイプ</string>
+    <string name="no_set">未設定</string>
+    <string name="activity_area">活動地域</string>
+    <string name="facility_environment">利用施設/環境</string>
+    <string name="learning_frequency">学習頻度</string>
+    <string name="age_range">年齢幅</string>
+    <string name="number_persons">人数制限</string>
+    <string name="gender_restriction">同性のみ</string>
+    <string name="seminar">セミナー</string>
+    <string name="workshop">ワークショップ</string>
+    <string name="mokumoku">もくもく会</string>
+    <string name="other">その他</string>
+    <string name="Next">次へ</string>
+    <string name="done">完了</string>
+    <string name="cancel">キャンセル</string>
+    <string name="library">図書館</string>
+    <string name="rental_space">レンタルスペース</string>
+    <string name="cafe_restaurant">カフェ・ファミレス</string>
+    <string name="study_place">有料自習室</string>
+    <string name="online">オンライン</string>
+    <string name="park">公園</string>
+    <string name="everyday">毎日</string>
+    <string name="week">週</string>
+    <string name="month">月</string>
+    <string name="on">On</string>
+
+
 </resources>
