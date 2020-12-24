@@ -13,7 +13,6 @@ import com.websarva.wings.android.droidsoftsecond.databinding.Pf001FragmentPager
 
 public class pf001_RecommendPagerFragment extends Fragment {
     public static final String ARG_OBJECT = "object";
-    private pvm001_RecommendPagerViewModel mViewModel;
     private Pf001FragmentPagerRecommendBinding mBinding;
 
     public static pf001_RecommendPagerFragment newInstance() {

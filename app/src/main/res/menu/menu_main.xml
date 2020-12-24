@@ -6,4 +6,10 @@
         android:title=""
         android:icon="@drawable/ic_baseline_filter_list_24"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/sign_out"
+        android:title="ログアウト"
+        app:showAsAction="never"
+        />
+
 </menu>

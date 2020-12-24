@@ -1,26 +1,54 @@
 @startuml
 
-abstract class AbstractList
-abstract AbstractCollection
-interface List
-interface Collection
+class a001_MainActivity{
+    - mBinding: A001ActivityMainBinding
+    - mFirestore: FirebaseFirestore
+    - mQuery: Query
+    - dialog: DialogFragment
+    ~ appBarConfiguration: AppBarConfiguration
+    ~ navController: NavController
+    # onCreate(Bundle savedInstanceState): void
+    + onSupportNavigationUp(): boolean
+    + onCreateOptionMenu(Menu menu): boolean
+    + onOptionsItemSelected(MenuItem item):boolean
+    + btn_onclick_f002(View view):void
+    }
 
-List <|-- AbstractList
-Collection <|-- AbstractCollection
+class bnf001_SearchBtmNavFragment{
+    - mBinding: Bnf001FragmentBtmNavSearchBinding
+    ~ ad001ViewPagerAdapter: ad001_ViewPagerAdapter
+    ~ viewPager: ViewPager2
+    + onCreateView(LayoutInflater inflater,ViewGroup container,Bundle savedInstanceState):View
+    + onViewCreated(View view, Bundle savedInstanceState):void
+    }
 
-Collection <|- List
-AbstractCollection <|- AbstractList
-AbstractList <|-- ArrayList
+class ad001_ViewPagerAdapter{
+    - PAGE_COUNT:int = 3
+    ~ map: Map<Integer, Fragment>
+    + ad001_ViewPagerAdapter(Fragment fragment)
+    + createFragment(int position):Fragment
+    + getItemCount():int
+    }
 
-class ArrayList {
-Object[] elementData
-size()
-}
+class dmf001_DrawerMenuFragment{}
+class f001_FilterFragment{}
+class f002_AddGroupFragment{}
 
-enum TimeUnit {
-DAYS
-HOURS
-MINUTES
-}
+a001_MainActivity o-- bnf001_SearchBtmNavFragment
+bnf001_SearchBtmNavFragment o-- ad001_ViewPagerAdapter
+ad001_ViewPagerAdapter o-- pf001_RecommendPagerFragment
+ad001_ViewPagerAdapter o-- pf002_SchedulePagerFragment
+ad001_ViewPagerAdapter o-- pf003_MapPagerFragment
+a001_MainActivity o-- f002_AddGroupFragment
+f002_AddGroupFragment o-- d001_GroupTypeDialog
+f002_AddGroupFragment o-- d002_ActivityAreaDialog
+d002_ActivityAreaDialog o-- d002_ActivityAreaDialog_next
+f002_AddGroupFragment o-- d003_FacilityEnvironmentDialog
+f002_AddGroupFragment o-- d004_LeaningFrequencyDialog
+d004_LeaningFrequencyDialog o-- d004_LeaningFrequencyDialog_next
+f002_AddGroupFragment o-- d005_AgeRangeDialog
+f002_AddGroupFragment o-- d006_NumberPersonsDialog
+
+
 
 @enduml
