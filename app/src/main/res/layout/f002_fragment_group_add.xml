@@ -354,8 +354,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:onClick="btn_onclick_f002"
-                    android:orientation="horizontal"
-                    tools:ignore="OnClick">
+                    android:orientation="horizontal">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"

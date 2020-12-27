@@ -64,7 +64,7 @@ public class a001_MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-    //-----レイアウト・ナビゲーション
+        //-----レイアウト・ナビゲーション
 
         //-----DataBinding
         mBinding = DataBindingUtil.setContentView(this, R.layout.a001_activity_main);//OR ActivityMainBinding.inflate(getLayoutInflater());
@@ -87,7 +87,7 @@ public class a001_MainActivity extends AppCompatActivity {
         NavigationUI.setupWithNavController(bottomNav, navController);
         /*TODO M005 実験的にドロワーやビューワーなどを再現するが、フラグメントごとにツールバーを変更する場合は、それぞれのフラグメントで設定する必要がある。    */
 
-    //-----Firebase
+        //-----Firebase
 
         //----ViewModel
         mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
@@ -104,9 +104,8 @@ public class a001_MainActivity extends AppCompatActivity {
                 .limit(LIMIT);*/
 
 
-    //-----RecyclerView //TODO M007　後日あらためてRecyclerViewのパーツを作成する
+        //-----RecyclerView //TODO M007　後日あらためてRecyclerViewのパーツを作成する
     }
-
 
 
     @Override
@@ -116,74 +115,74 @@ public class a001_MainActivity extends AppCompatActivity {
 
         //サインイン有無の分岐処理//サインインしていないのがTrueならば、StartSignIn
         //TODO M008 サンプルコードを使用して分岐処理をひとまず行うが、Navigationでの処理もできないか確認する。
-        if(shouldStartSignIn()){
+        if (shouldStartSignIn()) {
             startSignIn();
             return;
         }
     }
 
-        private boolean shouldStartSignIn() {
-            return (!mViewModel.getIsSigningIn() && FirebaseAuth.getInstance().getCurrentUser() == null);
-        }
+    private boolean shouldStartSignIn() {
+        return (!mViewModel.getIsSigningIn() && FirebaseAuth.getInstance().getCurrentUser() == null);
+    }
 
-            private void startSignIn() {
-                // Sign in with FirebaseUI
-                Intent intent = AuthUI
-                        .getInstance()
-                        .createSignInIntentBuilder()
-                        /*.setAvailableProviders(Collections.singletonList(
-                                new AuthUI.IdpConfig.EmailBuilder().build()))*/
-                        .setAvailableProviders(providers)
-                        .setIsSmartLockEnabled(false)
-                        .setTheme(R.style.AppTheme_LogIn)
-                        .setLogo(R.drawable.ic_baseline_school_24)
-                        .build();
-                // Create and launch sign-in intent
-                startActivityForResult(intent, RC_SIGN_IN);
-                mViewModel.setIsSigningIn(true);
-            }
+    private void startSignIn() {
+        // Sign in with FirebaseUI
+        Intent intent = AuthUI
+                .getInstance()
+                .createSignInIntentBuilder()
+                /*.setAvailableProviders(Collections.singletonList(
+                        new AuthUI.IdpConfig.EmailBuilder().build()))*/
+                .setAvailableProviders(providers)
+                .setIsSmartLockEnabled(false)
+                .setTheme(R.style.AppTheme_LogIn)
+                .setLogo(R.drawable.ic_baseline_school_24)
+                .build();
+        // Create and launch sign-in intent
+        startActivityForResult(intent, RC_SIGN_IN);
+        mViewModel.setIsSigningIn(true);
+    }
 
-                @Override
-                protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-                    super.onActivityResult(requestCode, resultCode, data);
-                    if (requestCode == RC_SIGN_IN){//出発点で設定したIDを確認する
-                        IdpResponse response = IdpResponse.fromResultIntent(data);//プロバイダーからのメッセージをここで取得
-                        mViewModel.setIsSigningIn(false);//SigningInにFalseを返すが、nullでは無いのでサインイン済確認には引っ掛からなくなる。
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == RC_SIGN_IN) {//出発点で設定したIDを確認する
+            IdpResponse response = IdpResponse.fromResultIntent(data);//プロバイダーからのメッセージをここで取得
+            mViewModel.setIsSigningIn(false);//SigningInにFalseを返すが、nullでは無いのでサインイン済確認には引っ掛からなくなる。
 
-                        if(resultCode!= RESULT_OK){
-                            if(response == null) {
-                                finish();//プロバイダーからのレスポンスがなかった場合、Activityを終了させる
-                            } else if (response.getError()!=null
-                                    && response.getError().getErrorCode() == ErrorCodes.NO_NETWORK){
-                             showSignInErrorDialog(R.string.meessage_no_network);
-                            }else{
-                                showSignInErrorDialog(R.string.message_unknown);
-                            }
-                        }
-                    }
+            if (resultCode != RESULT_OK) {
+                if (response == null) {
+                    finish();//プロバイダーからのレスポンスがなかった場合、Activityを終了させる
+                } else if (response.getError() != null
+                        && response.getError().getErrorCode() == ErrorCodes.NO_NETWORK) {
+                    showSignInErrorDialog(R.string.meessage_no_network);
+                } else {
+                    showSignInErrorDialog(R.string.message_unknown);
                 }
+            }
+        }
+    }
 
-                    //サインのエラーを表示するダイアログ
-                    private void showSignInErrorDialog(@StringRes int message){
-                        AlertDialog dialog = new AlertDialog.Builder(this)
-                                .setTitle(R.string.title_sign_in_error)
-                                .setMessage(message)
-                                .setCancelable(false)
-                                .setPositiveButton(R.string.option_retry, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        startSignIn();
-                                    }
-                                })
-                                .setNegativeButton(R.string.option_exit, new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialogInterface, int i) {
-                                        finish();
-                                    }
-                                }).create();
-
-                        dialog.show();
+    //サインのエラーを表示するダイアログ
+    private void showSignInErrorDialog(@StringRes int message) {
+        AlertDialog dialog = new AlertDialog.Builder(this)
+                .setTitle(R.string.title_sign_in_error)
+                .setMessage(message)
+                .setCancelable(false)
+                .setPositiveButton(R.string.option_retry, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        startSignIn();
                     }
+                })
+                .setNegativeButton(R.string.option_exit, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        finish();
+                    }
+                }).create();
+
+        dialog.show();
+    }
 
     //-----NavigationUIにアップボタンを設定
     @Override
@@ -201,16 +200,21 @@ public class a001_MainActivity extends AppCompatActivity {
         return true;
     }//アクションバーを使う際は必須
 
+
     //-----NavigationとMenuの紐付け設定
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        if(item.getItemId() == R.id.sign_out){
+        if (item.getItemId() == R.id.sign_out) {
             AuthUI.getInstance().signOut(this);
-            startSignIn(); }
-        else { NavController navController
-                = Navigation.findNavController(this, R.id.nav_host_fragment); }
+            startSignIn();
+        } else {
+            NavController navController
+                    = Navigation.findNavController(this, R.id.nav_host_fragment);
+        }
         return NavigationUI.onNavDestinationSelected(item, navController)
-                || super.onOptionsItemSelected(item);}
+                || super.onOptionsItemSelected(item);
+    }
+
 
     @SuppressLint("NonConstantResourceId")
     public void btn_onclick_f002(View view) {
