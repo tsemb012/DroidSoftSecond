@@ -57,6 +57,7 @@
     <string name="title_sign_in_error">Sign In Error</string>
     <string name="option_retry">Retry</string>
     <string name="option_exit">Exit</string>
+    <string name="progress_uploading">Uploading..</string>
 
 
 </resources>

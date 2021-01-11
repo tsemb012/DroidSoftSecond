@@ -28,7 +28,20 @@
         android:id="@+id/f002_AddGroupFragment2"
         android:name="com.websarva.wings.android.droidsoftsecond.f002_AddGroupFragment"
         android:label="fragment_f002__add_group"
-        tools:layout="@layout/f002_fragment_group_add" />
+        tools:layout="@layout/f002_fragment_group_add" >
+        <argument
+            android:name="num"
+            app:argType="integer"
+            android:defaultValue="0" />
+    </fragment>
+    <fragment
+        android:id="@+id/d005_AgeRangeDialog"
+        android:name="com.websarva.wings.android.droidsoftsecond.d005_AgeRangeDialog"
+        android:label="d005_AgeRangeDialog" >
+        <action
+            android:id="@+id/action_d005_AgeRangeDialog_to_f002_AddGroupFragment2"
+            app:destination="@id/f002_AddGroupFragment2" />
+    </fragment>
 
 
 </navigation>

@@ -11,14 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.google.android.material.slider.RangeSlider;
+import com.websarva.wings.android.droidsoftsecond.viewmodel.MainActivityViewModel;
 
 import static java.lang.Math.round;
 
 public class d006_NumberPersonsDialog extends DialogFragment {
 
     private TextView tv;
+    private RangeSlider rs;
+    private int minNumberPerson;
+    private int maxNumberPerson;
+    private MainActivityViewModel model;
+
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -30,14 +37,23 @@ public class d006_NumberPersonsDialog extends DialogFragment {
 
         LayoutInflater inflater = getActivity().getLayoutInflater();
         View view = inflater.inflate(R.layout.d006_dialog_number_persons,null,false);
-        RangeSlider rs = view.findViewById(R.id.rangeSlider_d006);
+        rs = view.findViewById(R.id.rangeSlider_d006);
         rs.setStepSize(1);
         rs.setThumbTintList(getResources().getColorStateList(R.color.range_slider));
+        minNumberPerson = round(rs.getValues().get(0));
+        maxNumberPerson = round(rs.getValues().get(1));
+        model = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+        model.setMinNumberPerson(minNumberPerson);
+        model.setMaxNumberPerson(maxNumberPerson);
+
         rs.addOnChangeListener(new RangeSlider.OnChangeListener() {
             @Override
             public void onValueChange(@NonNull RangeSlider slider, float value, boolean fromUser) {
                 tv = view.findViewById(R.id.tv_range_slider);
-                tv.setText(String.format("%s~%s人",round(rs.getValues().get(0)),round(rs.getValues().get(1))));
+                tv.setText(String.format("%s~%s人",minNumberPerson,maxNumberPerson));
+                minNumberPerson = round(rs.getValues().get(0));
+                maxNumberPerson = round(rs.getValues().get(1));
+
             }
         });
 
@@ -52,6 +68,8 @@ public class d006_NumberPersonsDialog extends DialogFragment {
                             public void onClick(DialogInterface dialog, int which) {
                                 TextView v = getActivity().findViewById(R.id.number_persons_input);
                                 v.setText(tv.getText().toString());
+                                model.setMinNumberPerson(minNumberPerson);
+                                model.setMaxNumberPerson(maxNumberPerson);
                             }
                         }).setNeutralButton(R.string.cancel,
                         new DialogInterface.OnClickListener() {

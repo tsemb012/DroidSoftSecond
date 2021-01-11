@@ -22,4 +22,5 @@ public class d001_GroupTypeDialog extends DialogFragment {
                     v.setText(items[which].toString());
                 }).create();//変数の数と変数名だけで匿名クラスを省略し、ラムダ式に変換できるよということ？
     }
+
 }
