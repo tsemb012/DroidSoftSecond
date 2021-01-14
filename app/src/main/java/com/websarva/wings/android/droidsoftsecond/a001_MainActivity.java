@@ -65,8 +65,8 @@ public class a001_MainActivity extends AppCompatActivity {
 
         //-----Navigation for AppBar
 
-        CollapsingToolbarLayout layout = mBinding.collapsingToolbarLayout;
-        Toolbar toolbar = mBinding.toolbar;
+        CollapsingToolbarLayout layout = mBinding.include.collapsingToolbarLayout;
+        Toolbar toolbar = mBinding.include.toolbar;
         setSupportActionBar(toolbar);//アクションバーを使うときはこれがセット
         DrawerLayout drawer = mBinding.drawerLayout;
         NavigationView navView = mBinding.navView;//ドロワーの具体的な記述をインスタンス化

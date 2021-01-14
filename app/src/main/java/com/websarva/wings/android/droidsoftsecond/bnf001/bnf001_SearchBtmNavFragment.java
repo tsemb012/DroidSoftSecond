@@ -51,6 +51,7 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
 
+
         //-----FragmentStateAdapterのインスタンス化　&　ViewPagerとのリンク
         ad001ViewPagerAdapter = new ad001_ViewPagerAdapter(this);
         viewPager = mBinding.pager;
@@ -69,6 +70,8 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
 
         //TODO BottomNavFragment_Search001 アニメーションを追加し、選択中のタブが中心に来るようにする。
     }
+
+
 /*
     @Override//フラグメント画面削除時
     public void onDestroyView() {
