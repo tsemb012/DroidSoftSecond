@@ -10,6 +10,7 @@ import java.util.Date;
 public class Group {
     private String hostUserId;
     private String hostUserName;
+    private String photoRefPath;
     private String groupName;
     private String groupIntro;
     private String groupType;
@@ -22,6 +23,7 @@ public class Group {
     private int numberPersonMin;
     private int numberPersonMax;
     private boolean genderRestriction;
+    private String ProfileRefPath;//TODO ProfileModelを構築する。
     private @ServerTimestamp Date timestamp;
 
     //-----Constructor
@@ -29,6 +31,7 @@ public class Group {
     public Group(){};
 
     public Group(FirebaseUser user,
+                 String photoRefPath,
                  String groupName,
                  String groupIntro,
                  String groupType,
@@ -46,6 +49,7 @@ public class Group {
         this.hostUserName = user.getDisplayName();
         if (TextUtils.isEmpty(this.hostUserName)) {
             this.hostUserId = user.getEmail();}
+        this.photoRefPath = photoRefPath;
         this.groupName = groupName;
         this.groupIntro = groupIntro;
         this.groupType = groupType;
@@ -69,6 +73,10 @@ public class Group {
 
     public String getHostUserName() {
         return hostUserName;
+    }
+
+    public String getPhotoRefPath() {
+        return photoRefPath;
     }
 
     public String getGroupName() {
@@ -119,9 +127,15 @@ public class Group {
         return genderRestriction;
     }
 
+    public String getProfileRefPath() {
+        return ProfileRefPath;
+    }
+
     public Date getTimestamp() {
         return timestamp;
     }
+
+
 
     /*public void setHostUserId(String hostUserId) {
         this.hostUserId = hostUserId;
@@ -129,6 +143,10 @@ public class Group {
 
     public void setHostUserName(String hostUserName) {
         this.hostUserName = hostUserName;
+    }
+
+        public void setPhotoRef(StorageReference photoRef) {
+        this.photoRef = photoRef;
     }
 
     public void setGroupName(String groupName) {
@@ -178,6 +196,11 @@ public class Group {
     public void setGenderRestriction(boolean genderRestriction) {
         this.genderRestriction = genderRestriction;
     }
+
+        public void setProfileRefPath(String profileRefPath) {
+        ProfileRefPath = profileRefPath;
+    }
+
 
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;

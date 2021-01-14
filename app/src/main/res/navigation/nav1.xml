@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_bnf001_Search_to_f002_AddGroupFragment2"
             app:destination="@id/f002_AddGroupFragment2" />
+        <action
+            android:id="@+id/action_bnf001_Search_to_f003_DetailGroupFragment2"
+            app:destination="@id/f003_DetailGroupFragment2" />
     </fragment>
     <fragment
         android:id="@+id/f001_Filter"
@@ -33,14 +36,18 @@
             android:name="num"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_f002_AddGroupFragment2_to_bnf001_Search"
+            app:destination="@id/bnf001_Search" />
     </fragment>
     <fragment
-        android:id="@+id/d005_AgeRangeDialog"
-        android:name="com.websarva.wings.android.droidsoftsecond.d005_AgeRangeDialog"
-        android:label="d005_AgeRangeDialog" >
-        <action
-            android:id="@+id/action_d005_AgeRangeDialog_to_f002_AddGroupFragment2"
-            app:destination="@id/f002_AddGroupFragment2" />
+        android:id="@+id/f003_DetailGroupFragment2"
+        android:name="com.websarva.wings.android.droidsoftsecond.f003_DetailGroupFragment"
+        android:label="f003_fragment_group_detail"
+        tools:layout="@layout/f003_fragment_group_detail" >
+        <argument
+            android:name="groupId"
+            app:argType="string" />
     </fragment>
 
 

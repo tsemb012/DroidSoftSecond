@@ -65,6 +65,11 @@
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 
+    <style name="AppTheme.Title">
+        <item name="android:fontFamily">sans-serif-medium</item>
+        <item name="android:textSize">20sp</item>
+    </style>
+
 
     <color name="colorAccent">#C283CD</color>
     <color name="colorPrimaryDark">#009AA3</color>

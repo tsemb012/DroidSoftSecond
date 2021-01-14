@@ -1,6 +1,5 @@
 package com.websarva.wings.android.droidsoftsecond;
 
-import android.content.res.Resources;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.Query;
+import com.google.firebase.storage.FirebaseStorage;
 import com.websarva.wings.android.droidsoftsecond.databinding.I001ItemViewGroupBinding;
 import com.websarva.wings.android.droidsoftsecond.model.Group;
 
@@ -17,7 +17,7 @@ import com.websarva.wings.android.droidsoftsecond.model.Group;
 public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
 
     public interface OnGroupSelectedListener{//Mainに継承させている。おそらく、画面表示ロジックを担う箇所に入れて、
-        void onGroupSelected (DocumentSnapshot group);
+        void onGroupSelected (DocumentSnapshot group, View view);
     }
 
     private OnGroupSelectedListener mListener;
@@ -54,9 +54,9 @@ public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
                          final OnGroupSelectedListener listener){
 
             Group group = snapshot.toObject(Group.class);
-            Resources resource = itemView.getResources();
+            //Resources resource = itemView.getResources();
 
-            //TODO G001 ここに画像表示ロジックを埋め込む。
+            GlideApp.with(binding.imageView).load(FirebaseStorage.getInstance().getReference(group.getPhotoRefPath())).into(binding.imageView);
             binding.groupNameI001.setText(group.getGroupName());
             //binding.communityPersonNum.setInt(group.getNumberPersonMax());
             //TODO G002 ↑のロジックを書き換える
@@ -65,11 +65,11 @@ public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
             //TODO G004 ↑ロジックを書き換えて、市も追加する。
             binding.communityComment.setText(group.getGroupIntro());
 
-            itemView.setOnClickListener(new View.OnClickListener(){
+            itemView.setOnClickListener(new View.OnClickListener(){//StaticのViewHolderからitemViewを引っ張る。
                 @Override
                 public void onClick(View view) {
                     if (listener != null) {
-                        listener.onGroupSelected(snapshot);//よくわからない。
+                        listener.onGroupSelected(snapshot, view);//よくわからない。
                     }
                 }
 

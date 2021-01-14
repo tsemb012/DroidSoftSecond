@@ -18,7 +18,11 @@ import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.switchmaterial.SwitchMaterial;
 import com.google.firebase.auth.FirebaseAuth;
@@ -27,6 +31,9 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.Transaction;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 import com.websarva.wings.android.droidsoftsecond.databinding.F002FragmentGroupAddBinding;
 import com.websarva.wings.android.droidsoftsecond.model.Group;
 import com.websarva.wings.android.droidsoftsecond.viewmodel.MainActivityViewModel;
@@ -58,6 +65,8 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
     private BroadcastReceiver mBroadcastReceiver;
     private Uri mDownloadUrl = null;
     private Uri mFileUri = null;//Fileの位置情報
+    private StorageReference mStorageRef;
+    private StorageReference photoRef;
 
 
 
@@ -74,9 +83,12 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
 
         //-----FireStoreレファレンス取得
         mFirestore = FirebaseFirestore.getInstance();
+        mStorageRef = FirebaseStorage.getInstance().getReference();
 
         //-----ViewModelのエントリポイント
         model = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+
+
 
         //-----不明のため後回し。
         //onNewIntent(getIntent());
@@ -165,6 +177,7 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
                 Log.i("check16", String.valueOf(minAge));
                 group = new Group(
                         FirebaseAuth.getInstance().getCurrentUser(),
+                        photoRef.getPath(),
                         mBinding.editGroupName.getText().toString(),
                         mBinding.editGroupIntro.getText().toString(),
                         mBinding.groupTypeInput.getText().toString(),
@@ -180,8 +193,8 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
                 );
 
                 Log.i("check11",mBinding.groupTypeInput.getText().toString());
-                addGroup(mFirestore.collection("groups"),group)/*
-                        .addOnSuccessListener(this, new OnSuccessListener<Void>() {
+                addGroup(mFirestore.collection("groups"),group);
+                        /*.addOnSuccessListener((Executor) this, new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void aVoid) {
                                 Log.d("Check", "GroupAdded");
@@ -192,13 +205,18 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
                             public void onFailure(@NonNull Exception e) {
                                 Log.d("Check", "GroupAddFiled");
                             }
-                        })*/;
+                        });*/
                 //AddOnSuccessListenerはインターフェースなど様々なところと関連しているように思われる。
+
+                //トースト作成
+                Toast.makeText(getActivity(),R.string.group_add,Toast.LENGTH_SHORT).show();
+                //画面遷移
+                NavDirections action = f002_AddGroupFragmentDirections.actionF002AddGroupFragment2ToBnf001Search();
+                Navigation.findNavController(view).navigate(action);
 
                 break;
         }
     }
-
 
     //addOnSuccessと関係しているような気がする。
     private Task<Void> addGroup(final CollectionReference groupRef, final Group group) {
@@ -212,6 +230,10 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
              }
          });
     }
+
+
+
+
 
     private void launchUploader(){
         Log.d(TAG, "launchUploader");
@@ -241,16 +263,32 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
 
     private void uploadFromUri(Uri fileUri) {
         Log.d(TAG, "uploadFromUri:src:" + fileUri.toString());
-
-        mFileUri = fileUri;//ファイルパス保存
-
-        //UploadServiceを起動
-        getActivity().startService(new Intent(getContext(), s002_UploadService.class)
-                .putExtra(s002_UploadService.EXTRA_FILE_URI, fileUri)
-                .setAction(s002_UploadService.ACTION_UPLOAD));//キーを設定//setされたアクションはどのように動くのだろうか？
-
-        // Show loading spinner
         showProgressBar(getString(R.string.progress_uploading));
+        mFileUri = fileUri;//ファイルパス保存
+        photoRef = mStorageRef.child("photos").child(fileUri.getLastPathSegment());
+        photoRef.putFile(fileUri).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception exception) {
+                Toast.makeText(getActivity(), R.string.upload_fail, Toast.LENGTH_SHORT).show();
+                hideProgressBar();
+            }
+        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+
+                Toast.makeText(getActivity(), R.string.upload_success, Toast.LENGTH_SHORT).show();
+                downloadFromPath();
+                hideProgressBar();
+            }
+
+        });
+    }
+
+    private void downloadFromPath() {
+        GlideApp.with(this).load(photoRef).into(mBinding.btnGroupImage);
+        Log.i("check22", String.valueOf(photoRef));
+        Log.i("check23", String.valueOf(photoRef.getDownloadUrl()));
+
     }
 
     private void showProgressBar(String caption) {
@@ -258,15 +296,11 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
         mBinding.progressBar.setVisibility(View.VISIBLE);
     }
 
-    protected static void failureUploadFinished(){
-
-    }
-
-
     private void hideProgressBar() {
         mBinding.caption.setText("");
         mBinding.progressBar.setVisibility(View.INVISIBLE);
     }
+
 
 }
 

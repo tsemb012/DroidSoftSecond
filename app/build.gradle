@@ -44,6 +44,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
     implementation 'com.google.firebase:firebase-firestore:22.0.0'
+    implementation 'com.firebaseui:firebase-ui-storage:6.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
@@ -79,6 +80,13 @@ dependencies {
     implementation "com.google.android.material:material:1.1.0-beta01"
     implementation 'com.firebaseui:firebase-ui-auth:6.4.0'
 
+    //-----CardView
+    implementation "androidx.cardview:cardview:1.0.0"
+
+    //-----Glide
+    implementation 'com.github.bumptech.glide:glide:4.11.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
+
 
     // Required only if Facebook login support is required
     // Find the latest Facebook SDK releases here: https://goo.gl/Ce5L94
@@ -88,17 +96,12 @@ dependencies {
     // Find the latest Twitter SDK releases here: https://goo.gl/E5wZvQ
     //implementation 'com.twitter.sdk.android:twitter-core:3.x'
 
-    //-----CardView
-    implementation "androidx.cardview:cardview:1.0.0"
-
-    //-----Glide
-    implementation 'com.github.bumptech.glide:glide:4.11.0'
-    annotationProcessor 'com.github.bumptech.glide:compiler:4.11.0'
-
     //-----GlideTransformation by Wasabeef
     //implementation 'jp.wasabeef:glide-transformations:4.x.x'
     // If you want to use the GPU Filters
     //implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
+
+
     
     }
 

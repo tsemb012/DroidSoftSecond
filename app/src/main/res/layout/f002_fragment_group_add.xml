@@ -39,18 +39,17 @@
                 app:layout_constraintTop_toBottomOf="@+id/progressBar"
                 />
 
+
             <ImageView
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"
                 android:clickable="true"
                 android:id="@+id/btn_group_image"
                 android:layout_width="0dp"
                 android:layout_height="247dp"
-                android:background="#B6DA8C"
                 android:paddingTop="20dp"
                 android:paddingBottom="20dp"
                 android:scaleX="1"
                 android:scaleY="1"
-                android:src="@mipmap/ic_launcher_round"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -414,7 +413,7 @@
                 android:id="@+id/btn_to_groupPOJO"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Button"
+                android:text="グループ登録"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout1" />

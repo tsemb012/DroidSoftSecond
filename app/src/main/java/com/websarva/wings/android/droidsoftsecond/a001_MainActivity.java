@@ -148,8 +148,6 @@ public class a001_MainActivity extends AppCompatActivity {
             startSignIn();
             return;
         }
-
-
     }
 
     @Override
@@ -157,8 +155,6 @@ public class a001_MainActivity extends AppCompatActivity {
         super.onStop();
 
     }
-
-
 
     private boolean shouldStartSignIn () {
         return (!mViewModel.getIsSigningIn() && FirebaseAuth.getInstance().getCurrentUser() == null);

@@ -8,7 +8,10 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavDirections;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
+
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -83,7 +86,9 @@ public class pf001_RecommendPagerFragment extends Fragment implements GroupAdapt
     }
 
     @Override
-    public void onGroupSelected(DocumentSnapshot group) {
-    //TODO PF001　それぞれのカードタップ時の処理を記入
+    public void onGroupSelected(DocumentSnapshot group, View view) {
+        String groupId= group.getId();
+        NavDirections action = bnf001_SearchBtmNavFragmentDirections.actionBnf001SearchToF003DetailGroupFragment2(groupId);
+        Navigation.findNavController(view).navigate(action);//Navigationの値引き渡しマスターピース
     }
 }
