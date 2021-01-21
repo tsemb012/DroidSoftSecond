@@ -20,4 +20,5 @@
     <dimen name="card_corner_radius">12dp</dimen>
     <dimen name="group_item_image_height">150dp</dimen>
     <dimen name="margin_normal">16dp</dimen>
+    <dimen name="fab_bottom_padding">72dp</dimen>
 </resources>

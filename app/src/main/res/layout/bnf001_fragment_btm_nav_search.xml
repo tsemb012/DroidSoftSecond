@@ -3,67 +3,89 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
-<androidx.constraintlayout.widget.ConstraintLayout
+<androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".bnf001.bnf001_SearchBtmNavFragment">
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="35dp"
-        android:layout_marginBottom="50dp"
-        android:clickable="true"
-        app:backgroundTint="@color/colorAccent"
-        app:layout_constraintBottom_toBottomOf="@+id/pager"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:srcCompat="@drawable/ic_baseline_add_circle_24" />
-
-    <androidx.viewpager2.widget.ViewPager2
-        android:id="@+id/pager"
+    <androidx.drawerlayout.widget.DrawerLayout
+        android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        tools:layout_editor_absoluteX="0dp">
+        android:layout_height="match_parent"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
+        <!--DrawerLayoutはRootViewとして設定-->
 
-    </androidx.viewpager2.widget.ViewPager2>
-
-    <com.google.android.material.tabs.TabLayout
-        android:id="@+id/tab_layout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/pager"
-        app:tabIndicatorColor="@color/colorAccent">
-
-    </com.google.android.material.tabs.TabLayout>
+        <com.google.android.material.navigation.NavigationView
+            android:id="@+id/nav_view"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"
+            android:fitsSystemWindows="true"
+            app:headerLayout="@layout/a001_activity_main_nav_header"
+            app:menu="@menu/menu_main_drawer_nav"/>
 
 
-</androidx.constraintlayout.widget.ConstraintLayout>
-</layout>
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+          >
 
-    <!--この例を NavigationUI を使用してデスティネーション フラグメントに実装するには、
-        まず各フラグメント レイアウトにアプリバーを定義します。
-        1 つ目は、標準ツールバーを使用するデスティネーション フラグメントです。-->
 
-    <!--2 つ目は、タブ付きのアプリバーを使用するデスティネーション フラグメントです。
-    <LinearLayout>
-        <com.google.android.material.appbar.AppBarLayout
-            ... />
-
-            <androidx.appcompat.widget.Toolbar
-                android:id="@+id/toolbar"
-                ... />
+            <include
+                android:id="@+id/include"
+                layout="@layout/include001_appbar" />
 
             <com.google.android.material.tabs.TabLayout
-                ... />
+                android:id="@+id/tab_layout"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:background="@color/colorPrimary"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/include"
+                app:tabIndicatorColor="@color/colorAccent" />
+            <!--
+                app:layout_collapseMode="parallax"
+                app:layout_scrollFlags="scroll|enterAlwaysCollapsed"
+                app:tabIndicatorFullWidth="false"
+                app:tabMode="scrollable"-->
 
-        </com.google.android.material.appbar.AppBarLayout>
-        ...
-    </LinearLayout>
-    -->
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/pager"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/bottom_nav"
+                app:layout_constraintTop_toBottomOf="@+id/tab_layout"
+                app:layout_constraintVertical_bias="0.0"
+                tools:layout_editor_absoluteX="0dp" />
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/floatingActionButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="24dp"
+                android:layout_marginBottom="24dp"
+                android:clickable="true"
+                app:layout_constraintBottom_toBottomOf="@+id/pager"
+                app:layout_constraintEnd_toEndOf="@+id/pager"
+                app:srcCompat="@drawable/ic_baseline_add_circle_24" />
+
+
+            <com.google.android.material.bottomnavigation.BottomNavigationView
+                android:id="@+id/bottom_nav"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?android:attr/windowBackground"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:menu="@menu/menu_bottom_nav" >
+
+            </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.drawerlayout.widget.DrawerLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
+

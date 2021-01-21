@@ -101,6 +101,8 @@ dependencies {
     // If you want to use the GPU Filters
     //implementation 'jp.co.cyberagent.android:gpuimage:2.1.0'
 
+    implementation 'org.adw.library:discrete-seekbar:1.0.1'
+
 
     
     }

@@ -149,6 +149,17 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
+    <string name="nickname">ニックネーム</string>
+    <string name="gender">性別</string>
+    <string name="male">男性</string>
+    <string name="female">女性</string>
+    <string name="gender_private">非公開</string>
+    <string name="age">年齢</string>
+    <string name="residentialArea">居住地域</string>
+    <string name="editComment">コメントを入力してください。</string>
+    <string name="profile_add">プロフィールを追加しました。</string>
+    <string name="editProfile">プロフィールを編集</string>
+    <string name="profile_page">プロフィール画面</string>
 
 
 </resources>

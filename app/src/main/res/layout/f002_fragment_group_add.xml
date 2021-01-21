@@ -105,7 +105,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/edit_group_intro" />
 
             <View
-                android:id="@+id/divider"
+                android:id="@+id/divider_intro"
                 android:layout_width="match_parent"
                 android:layout_height="1dp"
                 android:background="?android:attr/listDivider"
@@ -114,7 +114,7 @@
             <LinearLayout
                 android:id="@+id/linearLayout1"
                 style="@style/AppTheme"
-                android:layout_width="409dp"
+                android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -129,6 +129,7 @@
                         android:orientation="horizontal"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
+                        android:padding="0dp"
                         >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -170,6 +171,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:orientation="horizontal"
+                    android:padding="0dp"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -210,6 +212,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:orientation="horizontal"
+                    android:padding="0dp"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -249,9 +252,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:clickable="true"
-
                     android:orientation="horizontal"
-                  >
+                    android:padding="0dp"
+                    >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -291,6 +294,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:orientation="horizontal"
+                    android:padding="0dp"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -331,6 +335,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:orientation="horizontal"
+                    android:padding="0dp"
                     >
 
                     <androidx.constraintlayout.widget.ConstraintLayout
@@ -371,7 +376,7 @@
                     android:layout_height="wrap_content"
                     android:clickable="true"
                     android:orientation="horizontal"
-
+                    android:padding="0dp"
                     >
                     
                     <androidx.constraintlayout.widget.ConstraintLayout

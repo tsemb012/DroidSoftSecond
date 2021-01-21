@@ -28,7 +28,7 @@ public class Group {
 
     //-----Constructor
 
-    public Group(){};
+    public Group(){}
 
     public Group(FirebaseUser user,
                  String photoRefPath,
@@ -48,7 +48,7 @@ public class Group {
         this.hostUserId = user.getUid();
         this.hostUserName = user.getDisplayName();
         if (TextUtils.isEmpty(this.hostUserName)) {
-            this.hostUserId = user.getEmail();}
+            this.hostUserName = user.getEmail();}
         this.photoRefPath = photoRefPath;
         this.groupName = groupName;
         this.groupIntro = groupIntro;
@@ -137,7 +137,7 @@ public class Group {
 
 
 
-    /*public void setHostUserId(String hostUserId) {
+    public void setHostUserId(String hostUserId) {
         this.hostUserId = hostUserId;
     }
 
@@ -145,8 +145,8 @@ public class Group {
         this.hostUserName = hostUserName;
     }
 
-        public void setPhotoRef(StorageReference photoRef) {
-        this.photoRef = photoRef;
+    public void setPhotoRefPath(String photoRefPath) {
+        this.photoRefPath = photoRefPath;
     }
 
     public void setGroupName(String groupName) {
@@ -201,8 +201,7 @@ public class Group {
         ProfileRefPath = profileRefPath;
     }
 
-
     public void setTimestamp(Date timestamp) {
         this.timestamp = timestamp;
-    }*/
+    }
 }

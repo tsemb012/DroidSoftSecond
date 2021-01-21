@@ -13,7 +13,6 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.websarva.wings.android.droidsoftsecond.databinding.I001ItemViewGroupBinding;
 import com.websarva.wings.android.droidsoftsecond.model.Group;
 
-
 public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
 
     public interface OnGroupSelectedListener{//Mainに継承させている。おそらく、画面表示ロジックを担う箇所に入れて、
@@ -30,7 +29,7 @@ public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new ViewHolder(I001ItemViewGroupBinding.inflate(
+        return new GroupAdapter.ViewHolder(I001ItemViewGroupBinding.inflate(
                 LayoutInflater.from(parent.getContext()),parent, false));
     }
 
@@ -43,7 +42,7 @@ public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
 
         private I001ItemViewGroupBinding binding;
 
-        public ViewHolder(I001ItemViewGroupBinding binding){
+        public ViewHolder(@NonNull I001ItemViewGroupBinding binding){
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -56,7 +55,9 @@ public class GroupAdapter extends FirestoreAdapter<GroupAdapter.ViewHolder> {
             Group group = snapshot.toObject(Group.class);
             //Resources resource = itemView.getResources();
 
-            GlideApp.with(binding.imageView).load(FirebaseStorage.getInstance().getReference(group.getPhotoRefPath())).into(binding.imageView);
+            GlideApp.with(binding.imageView)
+                    .load(FirebaseStorage.getInstance().getReference(group.getPhotoRefPath()))
+                    .into(binding.imageView);
             binding.groupNameI001.setText(group.getGroupName());
             //binding.communityPersonNum.setInt(group.getNumberPersonMax());
             //TODO G002 ↑のロジックを書き換える

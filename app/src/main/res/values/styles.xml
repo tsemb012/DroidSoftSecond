@@ -70,9 +70,15 @@
         <item name="android:textSize">20sp</item>
     </style>
 
+    <style name="SplashDialogTheme" parent="@android:style/Theme.Holo.Dialog">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
 
     <color name="colorAccent">#C283CD</color>
     <color name="colorPrimaryDark">#009AA3</color>
     <color name="colorPrimary">#C9FFF7</color>
     <string name="off">off</string>
+
 </resources>

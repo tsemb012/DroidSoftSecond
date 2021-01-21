@@ -51,6 +51,58 @@
         <item name ="okinawa">沖縄県</item>
     </string-array>
 
+    <string-array name = "private_and_prefectures">
+        <item name = "private">非公開</item>
+        <item name ="hokkaido">北海道</item>
+        <item name ="aomori">青森県</item>
+        <item name ="iwate">岩手県</item>
+        <item name ="miyagi">宮城県</item>
+        <item name ="akita">秋田県</item>
+        <item name ="yamagata">山形県</item>
+        <item name ="fukushima">福島県</item>
+        <item name ="ibaraki">茨城県</item>
+        <item name ="tochigi">栃木県</item>
+        <item name ="gunma">群馬県</item>
+        <item name ="saitama">埼玉県</item>
+        <item name ="chiba">千葉県</item>
+        <item name ="tokyo">東京都</item>
+        <item name ="kanagawa">神奈川県</item>
+        <item name ="niigata">新潟県</item>
+        <item name ="toyama">富山県</item>
+        <item name ="ishikawa">石川県</item>
+        <item name ="fukui">福井県</item>
+        <item name ="yamanashi">山梨県</item>
+        <item name ="nagano">長野県</item>
+        <item name ="gifu">岐阜県</item>
+        <item name ="shizuoka">静岡県</item>
+        <item name ="aichi">愛知県</item>
+        <item name ="mie">三重県</item>
+        <item name ="shiga">滋賀県</item>
+        <item name ="kyoto">京都府</item>
+        <item name ="osaka">大阪府</item>
+        <item name ="hyogo">兵庫県</item>
+        <item name ="nara">奈良県</item>
+        <item name ="wakayama">和歌山県</item>
+        <item name ="tottori">鳥取県</item>
+        <item name ="shimane">島根県</item>
+        <item name ="okayama">岡山県</item>
+        <item name ="hiroshima">広島県</item>
+        <item name ="yamaguchi">山口県</item>
+        <item name ="tokushima">徳島県</item>
+        <item name ="kagawa">香川県</item>
+        <item name ="ehime">愛媛県</item>
+        <item name ="kochi">高知県</item>
+        <item name ="fukuoka">福岡県</item>
+        <item name ="saga">佐賀県</item>
+        <item name ="nagasaki">長崎県</item>
+        <item name ="kumamoto">熊本県</item>
+        <item name ="oita">大分県</item>
+        <item name ="miyazaki">宮崎県</item>
+        <item name ="kagoshima">鹿児島県</item>
+        <item name ="okinawa">沖縄県</item>
+    </string-array>
+
+
     <string-array name = "Hokkaido">
     <item name = "Sapporoshi">札幌市</item>
     <item name = "Hakodateshi">函館市</item>

@@ -1,6 +1,7 @@
 package com.websarva.wings.android.droidsoftsecond.bnf001;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +34,8 @@ public class pf001_RecommendPagerFragment extends Fragment implements GroupAdapt
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mFirestore = FirebaseFirestore.getInstance();
+
+        //-----Query for Adapter
         mQuery = mFirestore.collection("groups")
                 .orderBy("timestamp", Query.Direction.DESCENDING)
                 .limit(LIMIT);
@@ -42,6 +45,8 @@ public class pf001_RecommendPagerFragment extends Fragment implements GroupAdapt
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mBinding = Pf001FragmentPagerRecommendBinding.inflate(inflater, container, false);
+
+        //-----Adapter//-----RecyclerView
         mAdapter = new GroupAdapter(mQuery, this) {
 
             @Override
@@ -69,7 +74,6 @@ public class pf001_RecommendPagerFragment extends Fragment implements GroupAdapt
     @Override
     public void onStart() {
         super.onStart();
-
         //FireStoreAdapterのセット
         if(mAdapter != null) {
             mAdapter.startListening();
@@ -90,5 +94,6 @@ public class pf001_RecommendPagerFragment extends Fragment implements GroupAdapt
         String groupId= group.getId();
         NavDirections action = bnf001_SearchBtmNavFragmentDirections.actionBnf001SearchToF003DetailGroupFragment2(groupId);
         Navigation.findNavController(view).navigate(action);//Navigationの値引き渡しマスターピース
+        Log.i("check30", group.getId());
     }
 }

@@ -5,20 +5,8 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/dmf001_top"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Practice1" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Practice2" />
-        <item
-            android:id="@+id/nav_slideshow"
-            android:icon="@drawable/ic_menu_slideshow"
-            android:title="Practice3" />
-        <item
-            android:id="@+id/nav_practice1"
-            android:icon="@drawable/ic_menu_send"
-            android:title="Practice4"/>
+            android:id="@+id/f005_DetailProfileFragment"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="@string/profile_page" />
     </group>
 </menu>
