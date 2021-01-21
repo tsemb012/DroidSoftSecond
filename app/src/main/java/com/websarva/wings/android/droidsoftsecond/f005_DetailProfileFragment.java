@@ -60,7 +60,6 @@ public class f005_DetailProfileFragment extends Fragment implements View.OnClick
         NavHostFragment navHostFragment = (NavHostFragment)getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         navController = navHostFragment.getNavController();
         appBarConfiguration = new AppBarConfiguration.Builder(navController.getGraph()).build();
-
         NavigationUI.setupWithNavController(layout, toolbar, navController, appBarConfiguration);
 
         mFireStore.collection("profiles").document(UID).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
