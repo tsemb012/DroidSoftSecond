@@ -71,9 +71,17 @@
         android:name="com.websarva.wings.android.droidsoftsecond.f005_DetailProfileFragment"
         android:label="f005_fragment_profile_detail"
         tools:layout="@layout/f005_fragment_profile_detail" >
-        <argument
-            android:name="uid"
-            app:argType="string" />
+        <action
+            android:id="@+id/action_f005_DetailProfileFragment_to_f006_EditProfileFragment"
+            app:destination="@id/f006_EditProfileFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/f006_EditProfileFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.f006_EditProfileFragment"
+        android:label="f006_EditProfileFragment" >
+        <action
+            android:id="@+id/action_f006_EditProfileFragment_to_f005_DetailProfileFragment"
+            app:destination="@id/f005_DetailProfileFragment" />
     </fragment>
 
 

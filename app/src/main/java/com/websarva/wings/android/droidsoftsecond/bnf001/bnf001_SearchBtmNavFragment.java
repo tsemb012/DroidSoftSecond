@@ -3,7 +3,6 @@ package com.websarva.wings.android.droidsoftsecond.bnf001;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -68,12 +67,15 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
     private AppBarConfiguration appBarConfiguration;
     private FirebaseFirestore mFirestore;
     private FirebaseAuth mAuth;
-    private String uid;
+    private String UID;
     private CollectionReference mProfilesRef;
     private Profile profile;
     private List<AuthUI.IdpConfig> providers = Arrays.asList(
             new AuthUI.IdpConfig.EmailBuilder().build(),
             new AuthUI.IdpConfig.GoogleBuilder().build());
+    private ImageView headerProfile;
+    private TextView headerUserName;
+    private ImageView headerBackground;
 
 
     @Override
@@ -84,7 +86,7 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
         setHasOptionsMenu(true);
 
         //----ViewModel
-        mViewModel = new ViewModelProvider(this).get(MainActivityViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(MainActivityViewModel.class);
 
         //-----Enable FireStore logging　SDK(AndroidStudio)がFireStoreにログインすることを可能にする。
         FirebaseFirestore.setLoggingEnabled(true);
@@ -95,8 +97,6 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
 
         //-----EntryPoint of FirebaseAuth
         mAuth = FirebaseAuth.getInstance();
-        uid = mAuth.getCurrentUser().getUid();
-
     }
 
     @Nullable
@@ -130,15 +130,6 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
         DrawerLayout drawer = mBinding.drawerLayout;
         NavigationView navView = mBinding.navView;
         BottomNavigationView bottomNav = mBinding.bottomNav;
-        navView.getHeaderView(0)
-                .findViewById(R.id.nav_header)
-                .setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        NavDirections action = bnf001_SearchBtmNavFragmentDirections.actionBnf001SearchToF005DetailProfileFragment(uid);
-                        Navigation.findNavController(v).navigate(action);
-                    }
-                });
 
         //-----NavUI Objects
         navHostFragment = (NavHostFragment) getActivity().getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
@@ -168,30 +159,11 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
         tabLayout.getTabAt(2).setText("マップ");
         //TODO BottomNavFragment_Search001 アニメーションを追加し、選択中のタブが中心に来るようにする。
 
-        //-----NavHeaderの生成
-        ImageView headerProfile = (ImageView) mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_profilePhoto);
-        //ImageView headerBackground = (ImageView)mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_background);
-        TextView headerUserName = (TextView) mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_userName);
-        mProfilesRef.document(uid).get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot snapshot) {
+        //-----NavHeader箇所のインスタンス化
 
-                profile = snapshot.toObject(Profile.class);
-                String profilePhotoPath = profile.getProfilePhotoPath();
-                /*String  backgroundPhotoRef = profile.getBackgroundPhotoRef();*/
-                String username = profile.getUserName();
-                GlideApp.with(headerProfile)
-                        .load(FirebaseStorage.getInstance().getReference(profilePhotoPath))
-                        .into(headerProfile);
-              /*  GlideApp.with(headerProfile)
-                        .load(FirebaseStorage.getInstance().getReference(backgroundPhotoRef))//TODO BackgroundPhotoRefの名称をBackGroundPhotoPathに変更する。
-                        .into(headerProfile);*/
-                headerUserName.setText(username);
-
-                Log.i("check2021/01/20", snapshot.get("profilePhotoPath").toString());
-            }
-        });
-        //mBinding.navView
+        headerProfile = (ImageView) mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_profilePhoto);
+        headerBackground = (ImageView)mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_background);
+        headerUserName = (TextView) mBinding.navView.getHeaderView(0).findViewById(R.id.nav_header_userName);
 
         //-----NavHostFragmentを用いた画面遷移
         mBinding.floatingActionButton.setOnClickListener(new View.OnClickListener(){
@@ -223,9 +195,23 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
                 .addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                     @Override
                     public void onSuccess(DocumentSnapshot snapshot) {
-                        if(!snapshot.exists()){
+                        if(!snapshot.exists()){//プロフィールデータがなければ、プロフィール作成
+
                             NavDirections action = bnf001_SearchBtmNavFragmentDirections.actionBnf001SearchToF004AddProfileFragment();
                             navHostFragment.getNavController().navigate(R.id.action_bnf001_Search_to_f004_AddProfileFragment);
+                        }
+                        else {//データがあれば、プロフィール画像をヘッダーに貼り付け。
+                            profile = snapshot.toObject(Profile.class);
+                            String profilePhotoPath = profile.getProfilePhotoPath();
+                            //String  backgroundPhotoRef = profile.getBackgroundPhotoRef();*//*
+                            String username = profile.getUserName();
+                            GlideApp.with(headerProfile)
+                                    .load(FirebaseStorage.getInstance().getReference(profilePhotoPath))
+                                    .into(headerProfile);
+                         /* GlideApp.with(headerProfile)
+                                    .load(FirebaseStorage.getInstance().getReference(backgroundPhotoRef))//TODO BackgroundPhotoRefの名称をBackGroundPhotoPathに変更する。
+                                    .into(headerProfile);*/
+                            headerUserName.setText(username);
                         }
                     }
                 })
@@ -235,7 +221,6 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
                         //TODO 通信失敗時の処理を記載。→　別のアプリを参考にする。OR　通信環境がよくなってからやり直させる。
                     }
                 });
-
         return;
     }
 
@@ -255,12 +240,17 @@ public class bnf001_SearchBtmNavFragment extends Fragment {
         if (item.getItemId() == R.id.sign_out) {
             AuthUI.getInstance().signOut(getContext());
             startSignIn();
+            return super.onOptionsItemSelected(item);
         } else {
-            NavController navController
-                    = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+           Bundle args = new Bundle();
+           args.putString("AAA","AAA");
+           NavHostFragment.findNavController(navHostFragment).navigate(R.id.f005_DetailProfileFragment,args);
+           return true;
+
         }
-        return NavigationUI.onNavDestinationSelected(item, navController)
-                || super.onOptionsItemSelected(item);
+        /*NavController navController
+                = Navigation.findNavController(getActivity(), R.id.nav_host_fragment);
+        return NavigationUI.onNavDestinationSelected(item, navController);*/
     }
 
     private boolean shouldStartSignIn() {

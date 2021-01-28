@@ -11,7 +11,6 @@ public class Profile {
     private String residentialArea;
 
 
-
     public Profile(){}
     public Profile(String userId, String profilePhotoPath, String userName, String comment, String gender, int age, String residentialArea) {
         this.userId = userId;
@@ -55,6 +54,15 @@ public class Profile {
     public void setUserName(String userName) {
         this.userName = userName;
     }
+
+    public String getComment() {
+        return comment;
+    }
+
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
+
 
     public String getGender() {
         return gender;

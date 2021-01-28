@@ -8,5 +8,10 @@
             android:id="@+id/f005_DetailProfileFragment"
             android:icon="@drawable/ic_baseline_account_box_24"
             android:title="@string/profile_page" />
+
+        <item
+            android:id="@+id/aaaa"
+            android:icon="@drawable/ic_baseline_account_box_24"
+            android:title="aaaa" />
     </group>
 </menu>

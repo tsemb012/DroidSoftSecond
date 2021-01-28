@@ -29,7 +29,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.websarva.wings.android.droidsoftsecond.databinding.F004FragmentProfileAddBinding;
+import com.websarva.wings.android.droidsoftsecond.databinding.F006FragmentProfileEditBinding;
 import com.websarva.wings.android.droidsoftsecond.model.Profile;
 
 import org.adw.library.widgets.discreteseekbar.DiscreteSeekBar;
@@ -40,11 +40,11 @@ import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 import static java.lang.String.valueOf;
 
-public class f004_AddProfileFragment extends Fragment implements View.OnClickListener {
+public class f006_EditProfileFragment extends Fragment implements View.OnClickListener {
 
-    private static final int RC_TAKE_PICTURE = 102;
+    private static final int RC_TAKE_PICTURE = 103;
     private FirebaseFirestore mFirestore;
-    private F004FragmentProfileAddBinding mBinding;
+    private @NonNull F006FragmentProfileEditBinding mBinding;
     private FirebaseUser user;
     private StorageReference mStorageRef;
     private String profileName;
@@ -73,7 +73,8 @@ public class f004_AddProfileFragment extends Fragment implements View.OnClickLis
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        mBinding = F004FragmentProfileAddBinding.inflate(inflater, container, false);
+        mBinding = F006FragmentProfileEditBinding.inflate(inflater, container, false);
+        mBinding.profileBackgroundImage.setOnClickListener(this);
         mBinding.editProfileView.setOnClickListener(this);
         mBinding.btnResidentialArea.setOnClickListener(this);
         mBinding.btnAddProfile.setOnClickListener(this);
@@ -144,7 +145,7 @@ public class f004_AddProfileFragment extends Fragment implements View.OnClickLis
                 //トースト作成
                 Toast.makeText(getActivity(),R.string.profile_add,Toast.LENGTH_SHORT).show();
                 //画面遷移
-                NavDirections action = f004_AddProfileFragmentDirections.actionF004AddProfileFragmentToBnf001Search();
+                NavDirections action = f006_EditProfileFragmentDirections.actionF006EditProfileFragmentToF005DetailProfileFragment();
                 Navigation.findNavController(v).navigate(action);
                 break;
         }
@@ -185,7 +186,7 @@ public class f004_AddProfileFragment extends Fragment implements View.OnClickLis
         bitmap.compress(Bitmap.CompressFormat.JPEG,100,baos);
         byte[] data = baos.toByteArray();
 
-        profilePhotoRef = mStorageRef.child("profilePhotos").child(user.getPhotoUrl().getLastPathSegment());//TODO　乱数をいれる必要がある。
+        profilePhotoRef = mStorageRef.child("profilePhotos").child("BBB");//乱数を入力する
         profilePhotoPath = profilePhotoRef.getPath();
         UploadTask uploadTask = profilePhotoRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {

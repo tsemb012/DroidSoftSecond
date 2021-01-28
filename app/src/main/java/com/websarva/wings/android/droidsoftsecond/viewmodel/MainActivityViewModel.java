@@ -6,10 +6,15 @@ public class MainActivityViewModel extends ViewModel {//サインイン状態の
 
 
     private boolean mIsSigningIn;
+    private boolean IsOtherProfile;
     private int minAge;
     private int maxAge;
     private int minNumberPerson;
     private int maxNumberPerson;
+    private String UID;
+
+
+
 
     //サインイン状態の有無を返す。
     public boolean getIsSigningIn() {
@@ -25,7 +30,9 @@ public class MainActivityViewModel extends ViewModel {//サインイン状態の
         return minNumberPerson;
     }
     public int getMaxNumberPerson() { return maxNumberPerson; }
-
+    public String getUID() {
+        return UID;
+    }
     //サインインされた段階で、mSigningInにTrueを渡す。//ViewModelが破棄されるまでTrue
     public void setIsSigningIn(boolean mIsSigningIn) {
         this.mIsSigningIn = mIsSigningIn;
@@ -38,6 +45,17 @@ public class MainActivityViewModel extends ViewModel {//サインイン状態の
     }
     public void setMinNumberPerson(int minNumberPerson) { this.minNumberPerson = minNumberPerson; }
     public void setMaxNumberPerson(int maxNumberPerson) { this.maxNumberPerson = maxNumberPerson; }
+    public void setUID(String UID) {
+        this.UID = UID;
+    }
+
+    public boolean isOtherProfile() {
+        return IsOtherProfile;
+    }
+
+    public void setOtherProfile(boolean otherProfile) {
+        IsOtherProfile = otherProfile;
+    }
 }
 
 

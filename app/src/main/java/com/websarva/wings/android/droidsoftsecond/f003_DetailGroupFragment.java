@@ -9,19 +9,25 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.appbar.CollapsingToolbarLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.storage.FirebaseStorage;
 import com.websarva.wings.android.droidsoftsecond.databinding.F003FragmentGroupDetailBinding;
 import com.websarva.wings.android.droidsoftsecond.model.Group;
+import com.websarva.wings.android.droidsoftsecond.viewmodel.MainActivityViewModel;
 
 public class f003_DetailGroupFragment extends Fragment implements View.OnClickListener,ProfileAdapter.OnProfileSelectedListener {
 
@@ -33,6 +39,9 @@ public class f003_DetailGroupFragment extends Fragment implements View.OnClickLi
     private @NonNull F003FragmentGroupDetailBinding mBinding;
     private AppBarConfiguration appBarConfiguration;
     private Group group;
+    private ProfileAdapter mAdapter;
+    private Query mQuery;
+    private static final int LIMIT = 50;
 
 
     @Override
@@ -41,11 +50,18 @@ public class f003_DetailGroupFragment extends Fragment implements View.OnClickLi
 
         mFirestore = FirebaseFirestore.getInstance();
 
+        //-----Query for Adapter
+        mQuery = mFirestore.collection("profiles")
+                .orderBy("userId", Query.Direction.DESCENDING)
+                .limit(LIMIT);
+
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
         //-----ViewObjects for Navigation
         CollapsingToolbarLayout layout = mBinding.collapsingToolbarLayout;
@@ -92,8 +108,49 @@ public class f003_DetailGroupFragment extends Fragment implements View.OnClickLi
 
         mBinding = F003FragmentGroupDetailBinding.inflate(inflater, container, false);
 
+        //-----Adapter//-----RecyclerView
+        mAdapter = new ProfileAdapter(mQuery, this) {
+
+            @Override
+            protected void onDataChanged() {//TODO PF001　データチェンジの中身を記載
+                /*if (getItemCount() == 0) {
+                    mBinding.recyclerGroups.setVisibility(View.GONE);
+                    mBinding.viewEmpty.setVisibility(View.VISIBLE);
+                } else {
+                    mBinding.recyclerGroups.setVisibility(View.VISIBLE);
+                    mBinding.viewEmpty.setVisibility(View.GONE);
+                }*/
+            }
+
+            @Override
+            protected void onError(FirebaseFirestoreException error) {
+                super.onError(error);
+            }
+        };
+        LinearLayoutManager horizontalLayoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false);
+        mBinding.recyclerProfiles.setLayoutManager(horizontalLayoutManager);
+        mBinding.recyclerProfiles.setAdapter(mAdapter);
 
         return mBinding.getRoot();
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        //FireStoreAdapterのセット
+        if(mAdapter != null) {
+            mAdapter.startListening();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+
+        if (mAdapter != null) {
+            mAdapter.stopListening();
+        }
     }
 
     @Override
@@ -103,7 +160,11 @@ public class f003_DetailGroupFragment extends Fragment implements View.OnClickLi
 
     @Override
     public void onProfileSelected(DocumentSnapshot profile, View view) {
+        MainActivityViewModel model = new ViewModelProvider(requireActivity()).get(MainActivityViewModel.class);
+        model.setOtherProfile(true);
         String profileId = profile.getId();
-        //TODO Navigationで各人のプロフィールに飛ばす。
+        Bundle bundle = new Bundle();
+        bundle.putString("pUID",profileId);//Bundleがちゃんと渡されているか確認する。
+        Navigation.findNavController(view).navigate(R.id.f005_DetailProfileFragment,bundle);//Navigationの値引き渡しマスターピース
     }
 }

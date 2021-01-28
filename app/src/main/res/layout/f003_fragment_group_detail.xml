@@ -51,13 +51,13 @@
                 android:text="GroupName" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:layout_width="169dp"
-                android:layout_height="41dp"
-                android:layout_marginLeft="20dp"
-                android:layout_marginTop="150dp"
-                android:orientation="horizontal" />
-
-
+                android:id="@+id/recyclerProfiles"
+                android:layout_width="match_parent"
+                android:layout_height="70dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="120dp"
+                android:orientation="horizontal"
+                tools:listitem="@layout/i002_item_view_profile" />
 
 
         </com.google.android.material.appbar.CollapsingToolbarLayout>

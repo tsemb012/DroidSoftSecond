@@ -13,6 +13,8 @@
         android:layout_height="match_parent"
         >
 
+
+
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar_profile"
             android:layout_width="match_parent"
@@ -47,10 +49,19 @@
                     app:navigationIcon="@drawable/ic_baseline_arrow_back_24"
                     app:title="ProfileDetail"/>
 
-
             </com.google.android.material.appbar.CollapsingToolbarLayout>
 
         </com.google.android.material.appbar.AppBarLayout>
+
+        <ImageView
+            android:id="@+id/profile_image"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_margin="16dp"
+            android:background="@color/colorPrimary"
+            app:layout_anchor="@id/appbar_profile"
+            app:layout_anchorGravity="bottom|left"
+            android:translationZ="4.0mm"/>
 
 
         <androidx.core.widget.NestedScrollView
@@ -233,17 +244,11 @@
         </androidx.core.widget.NestedScrollView>
 
 
-        <ImageView
-            android:id="@+id/profile_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:layout_margin="16dp"
-            android:background="@color/colorPrimary"
-            app:layout_anchor="@id/appbar_profile"
-            app:layout_anchorGravity="bottom|left" />
+
 
 
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 
 
 
