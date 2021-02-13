@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bnf001.pf002_SchedulePagerFragment">
+    tools:context=".ui.search.pf002_SchedulePagerFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView

@@ -2,12 +2,12 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/bnf001_Search"
+        android:id="@+id/bnf001_SearchBtmNavFragment"
         android:icon="@drawable/ic_baseline_search_24"
         android:title="A" />
 
     <item
-        android:id="@+id/belonging_list_bottomNav"
+        android:id="@+id/bnf002_OwnpageBtmNavFragment"
         android:icon="@drawable/ic_baseline_group_24"
         android:title="B" />
 

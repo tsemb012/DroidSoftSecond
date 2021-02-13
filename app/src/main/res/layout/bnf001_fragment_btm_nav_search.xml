@@ -6,7 +6,7 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bnf001.bnf001_SearchBtmNavFragment">
+    tools:context=".ui.search.bnf001_SearchBtmNavFragment">
 
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"

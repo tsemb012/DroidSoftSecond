@@ -3,16 +3,11 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav1"
-    app:startDestination="@id/bnf001_Search">
+    app:startDestination="@id/bnf001_SearchBtmNavFragment">
 
     <fragment
-        android:id="@+id/dmf001_top"
-        android:name="com.websarva.wings.android.droidsoftsecond.DrawerNav.dmf001_DrawerMenuFragment"
-        android:label="fragment_drawer_menu"
-        tools:layout="@layout/dmf001_fragment_drawer_menu" />
-    <fragment
-        android:id="@+id/bnf001_Search"
-        android:name="com.websarva.wings.android.droidsoftsecond.bnf001.bnf001_SearchBtmNavFragment"
+        android:id="@+id/bnf001_SearchBtmNavFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.search.bnf001_SearchBtmNavFragment"
         android:label="fragment_bottom_nav"
         tools:layout="@layout/bnf001_fragment_btm_nav_search" >
         <action
@@ -27,15 +22,13 @@
         <action
             android:id="@+id/action_bnf001_Search_to_f005_DetailProfileFragment"
             app:destination="@id/f005_DetailProfileFragment" />
+        <action
+            android:id="@+id/action_bnf001_Search_to_bnf002_OwnpageBtmNavFragment"
+            app:destination="@id/bnf002_OwnpageBtmNavFragment" />
     </fragment>
     <fragment
-        android:id="@+id/f001_Filter"
-        android:name="com.websarva.wings.android.droidsoftsecond.f001_FilterFragment"
-        android:label="fragment_mf001__filter__group"
-        tools:layout="@layout/f001_fragment_pager_recommend" />
-    <fragment
         android:id="@+id/f002_AddGroupFragment2"
-        android:name="com.websarva.wings.android.droidsoftsecond.f002_AddGroupFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.group_add.f002_AddGroupFragment"
         android:label="fragment_f002__add_group"
         tools:layout="@layout/f002_fragment_group_add" >
         <argument
@@ -44,11 +37,11 @@
             android:defaultValue="0" />
         <action
             android:id="@+id/action_f002_AddGroupFragment2_to_bnf001_Search"
-            app:destination="@id/bnf001_Search" />
+            app:destination="@id/bnf001_SearchBtmNavFragment" />
     </fragment>
     <fragment
         android:id="@+id/f003_DetailGroupFragment2"
-        android:name="com.websarva.wings.android.droidsoftsecond.f003_DetailGroupFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.group_detail.f003_DetailGroupFragment"
         android:label="f003_fragment_group_detail"
         tools:layout="@layout/f003_fragment_group_detail" >
         <argument
@@ -57,18 +50,21 @@
         <action
             android:id="@+id/action_f003_DetailGroupFragment2_to_f005_DetailProfileFragment"
             app:destination="@id/f005_DetailProfileFragment" />
+        <action
+            android:id="@+id/action_f003_DetailGroupFragment2_to_bnf002_OwnpageBtmNavFragment"
+            app:destination="@id/bnf002_OwnpageBtmNavFragment" />
     </fragment>
     <fragment
         android:id="@+id/f004_AddProfileFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.f004_AddProfileFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.profile_add.f004_AddProfileFragment"
         android:label="f004_AddProfileFragment" >
         <action
             android:id="@+id/action_f004_AddProfileFragment_to_bnf001_Search"
-            app:destination="@id/bnf001_Search" />
+            app:destination="@id/bnf001_SearchBtmNavFragment" />
     </fragment>
     <fragment
         android:id="@+id/f005_DetailProfileFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.f005_DetailProfileFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.profile_detail.f005_DetailProfileFragment"
         android:label="f005_fragment_profile_detail"
         tools:layout="@layout/f005_fragment_profile_detail" >
         <action
@@ -77,12 +73,16 @@
     </fragment>
     <fragment
         android:id="@+id/f006_EditProfileFragment"
-        android:name="com.websarva.wings.android.droidsoftsecond.f006_EditProfileFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.profile_edit.f006_EditProfileFragment"
         android:label="f006_EditProfileFragment" >
         <action
             android:id="@+id/action_f006_EditProfileFragment_to_f005_DetailProfileFragment"
             app:destination="@id/f005_DetailProfileFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/bnf002_OwnpageBtmNavFragment"
+        android:name="com.websarva.wings.android.droidsoftsecond.ui.own_page.bnf002_OwnpageBtmNavFragment"
+        android:label="bnf002_OwnpageBtmNavFragment" />
 
 
 </navigation>

@@ -6,7 +6,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".bnf001.pf001_RecommendPagerFragment">
+        tools:context=".ui.search.pf001_RecommendPagerFragment">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerGroups"

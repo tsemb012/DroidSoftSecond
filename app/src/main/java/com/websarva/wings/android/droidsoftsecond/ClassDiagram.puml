@@ -1,4 +1,4 @@
-@startuml
+Mainaa@startuml
 
 class a001_MainActivity{
     - mBinding: A001ActivityMainBinding

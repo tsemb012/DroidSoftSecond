@@ -6,7 +6,7 @@
 <FrameLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".f002_AddGroupFragment">
+    tools:context=".ui.group_add.f002_AddGroupFragment">
 
     <ScrollView
         android:layout_width="match_parent"
