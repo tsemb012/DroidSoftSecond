@@ -96,8 +96,6 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
         //-----ViewModelのエントリポイント
         model = new ViewModelProvider(requireActivity()).get(MainViewModel.class);
 
-
-
         //-----不明のため後回し。
         //onNewIntent(getIntent());
 
@@ -173,6 +171,11 @@ public class f002_AddGroupFragment extends Fragment implements View.OnClickListe
                             }
                         });
                 break;
+
+
+
+
+
             case R.id.btn_to_groupPOJO:
                 activityArea = mBinding.activityAreaInput.getText().toString();
                 prefecture = activityArea.substring(activityArea.lastIndexOf("、") + 1);

@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.fragment.NavHostFragment;
@@ -12,9 +13,11 @@ import androidx.navigation.ui.NavigationUI;
 
 import com.websarva.wings.android.droidsoftsecond.R;
 import com.websarva.wings.android.droidsoftsecond.databinding.A001ActivityMainBinding;
+import com.websarva.wings.android.droidsoftsecond.viewmodel.MainViewModel;
 
 public class a001_MainActivity extends AppCompatActivity {
 
+    private MainViewModel mViewModel;
     private A001ActivityMainBinding mBinding;
     private NavController navController;
     private AppBarConfiguration appBarConfiguration;
@@ -22,6 +25,10 @@ public class a001_MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //-----ViewModel
+        mViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+            //TODO コンストラクターからプロフィール情報を入れる。
 
         //-----DataBinding
         mBinding = DataBindingUtil.setContentView(this, R.layout.a001_activity_main);

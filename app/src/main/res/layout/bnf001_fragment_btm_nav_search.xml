@@ -89,6 +89,7 @@
             android:fitsSystemWindows="true"
             app:headerLayout="@layout/a001_activity_main_nav_header"
             app:menu="@menu/menu_main_drawer_nav"/>
+
     </androidx.drawerlayout.widget.DrawerLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
 </layout>

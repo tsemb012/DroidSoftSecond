@@ -18,6 +18,7 @@ public class d002_ActivityAreaDialog_next extends DialogFragment {
     //List<String> items = new ArrayList<String>();
     String[] list_prefecture;
     String[] items;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

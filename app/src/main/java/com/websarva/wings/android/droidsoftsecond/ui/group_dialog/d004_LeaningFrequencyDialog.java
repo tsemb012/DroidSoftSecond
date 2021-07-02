@@ -43,7 +43,8 @@ public class d004_LeaningFrequencyDialog extends DialogFragment {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                             }
-                        }).create();}}//変数の数と変数名だけで匿名クラスを省略し、ラムダ式に変換できるよということ
+                        }).create();}
+}//変数の数と変数名だけで匿名クラスを省略し、ラムダ式に変換できるよということ
 
 
 
